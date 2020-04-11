@@ -1,0 +1,14 @@
+{
+  "name": "@chriscdn/promise-retry",
+  "version": "1.0.0",
+  "description": "Retry a function returning a rejected promise until it resolves.",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.es.js",
+  "repository": "https://github.com/chriscdn/promise-retry",
+  "author": "Christopher Meyer <chris@schwiiz.org>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.2"
+  }
+}
