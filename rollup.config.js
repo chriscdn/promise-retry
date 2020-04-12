@@ -6,11 +6,7 @@ export default [{
 	output: [{
 		file: pkg.main,
 		format: 'cjs'
-	}],
-
-	plugins: [
-	//	commonjs()
-	]
+	}]
 }, {
 	input: 'src/index.js',
 	output: [{
@@ -18,6 +14,6 @@ export default [{
 		format: 'es'
 	}],
 	plugins: [
-commonjs()
+		commonjs()
 	]
 }]

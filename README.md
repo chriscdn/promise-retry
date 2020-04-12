@@ -18,7 +18,7 @@ $ yarn add @chriscdn/promise-retry
 
 ## Example
 
-``` js
+```js
 const promiseRetry = require('@chriscdn/promise-reject')
 
 function myFunction(attempt) {
