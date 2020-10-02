@@ -35,8 +35,13 @@ function myFunction(attempt) {
 
 }
 
+const options = {
+	maxAttempts: 10,
+	timeout: 0
+}
+
 // Call myFunction until a resolved promise is returned, but not more than 10 times (default is 10)
-promiseRetry(myFunction, 10)
+promiseRetry(attempt => myFunction(attempt), options)
 	.then(value => {
 		// myFunction resolved within 10 attempts
 		// value is from the myFunction resolve call
