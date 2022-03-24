@@ -1,6 +1,6 @@
 {
 	"name": "@chriscdn/promise-retry",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Retry a function returning a rejected promise until it resolves.",
 	"main": "lib/index.cjs.js",
 	"module": "lib/index.es.js",
@@ -12,7 +12,7 @@
 		"watch": "rollup -c --watch"
 	},
 	"devDependencies": {
-		"@rollup/plugin-commonjs": "^15.1.0"
+		"@rollup/plugin-commonjs": "^21.0.2"
 	},
 	"keywords": [
 		"promise",
