@@ -1,21 +1,21 @@
 {
-	"name": "@chriscdn/promise-retry",
-	"version": "1.0.2",
-	"description": "Retry a function returning a rejected promise until it resolves.",
-	"main": "lib/index.cjs.js",
-	"module": "lib/index.es.js",
-	"repository": "https://github.com/chriscdn/promise-retry",
-	"author": "Christopher Meyer <chris@schwiiz.org>",
-	"license": "MIT",
-	"scripts": {
-		"build": "rollup -c",
-		"watch": "rollup -c --watch"
-	},
-	"devDependencies": {
-		"@rollup/plugin-commonjs": "^21.0.2"
-	},
-	"keywords": [
-		"promise",
-		"retry"
-	]
+  "name": "@chriscdn/promise-retry",
+  "version": "1.0.2",
+  "description": "Retry a function returning a rejected promise until it resolves.",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.es.js",
+  "repository": "https://github.com/chriscdn/promise-retry",
+  "author": "Christopher Meyer <chris@schwiiz.org>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c --watch"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.2"
+  },
+  "keywords": [
+    "promise",
+    "retry"
+  ]
 }
