@@ -1,6 +1,6 @@
 const defaultOptions = {
   maxAttempts: 10,
-  milliseconds: 0,
+  retryDelay: 0,
 }
 
 function promiseRetry(func, options = defaultOptions, attempt = 1) {
@@ -11,7 +11,7 @@ function promiseRetry(func, options = defaultOptions, attempt = 1) {
       return new Promise((resolve) => {
         setTimeout(
           () => resolve(promiseRetry(func, options, attempt + 1)),
-          config.milliseconds
+          config.retryDelay
         )
       })
     } else {
