@@ -36,6 +36,7 @@ function myFunction(attempt) {
 const options = {
   maxAttempts: 10,
   retryDelay: 0,
+  onError: (err, attempt) => {},
 }
 
 // Call myFunction until a resolved promise is returned, but not more than 10 times (default is 10)
@@ -62,6 +63,9 @@ const results = await promiseRetry(
   {
     maxAttempts: 10,
     retryDelay: 0,
+    onError: (err, attempt) => {
+      // log the error
+    },
   }
 )
 ```
