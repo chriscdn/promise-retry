@@ -9,7 +9,7 @@ function promiseRetry(func, options = defaultOptions, attempt = 1) {
 
   return func(attempt).catch((err) => {
     // For logging...
-    options.onError(err, attempt)
+    config.onError(err, attempt)
 
     if (attempt < config.maxAttempts) {
       return new Promise((resolve) => {

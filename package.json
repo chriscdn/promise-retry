@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/promise-retry",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Retry a function returning a rejected promise until it resolves.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.es.js",
