@@ -19,25 +19,25 @@ $ yarn add @chriscdn/promise-retry
 ## Example 1 - Promises
 
 ```js
-const promiseRetry = require('@chriscdn/promise-retry')
+import promiseRetry from "@chriscdn/promise-retry";
 
 function myFunction(attempt) {
   return new Promise((resolve, reject) => {
     // ... do something
 
     if (allIsFine) {
-      resolve(/* <value> */)
+      resolve(/* <value> */);
     } else {
-      reject(/* <err> */)
+      reject(/* <err> */);
     }
-  })
+  });
 }
 
 const options = {
   maxAttempts: 10,
   retryDelay: 0,
   onError: (err, attempt) => {},
-}
+};
 
 // Call myFunction until a resolved promise is returned, but not more than 10 times (default is 10)
 promiseRetry((attempt) => myFunction(attempt), options)
@@ -48,13 +48,13 @@ promiseRetry((attempt) => myFunction(attempt), options)
   .catch((err) => {
     // myFunction failed to return a resolved promise within 10 attempts
     // err is the reject value from the last attempt
-  })
+  });
 ```
 
 ## Example 2 - Async/Await
 
 ```js
-const promiseRetry = require('@chriscdn/promise-retry')
+import promiseRetry from "@chriscdn/promise-retry";
 
 const results = await promiseRetry(
   async (attempt) => {
@@ -67,7 +67,7 @@ const results = await promiseRetry(
       // log the error
     },
   }
-)
+);
 ```
 
 ## License

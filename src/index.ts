@@ -1,15 +1,17 @@
-'use strict';
-
 const defaultOptions = {
   maxAttempts: 10,
   retryDelay: 0,
-  onError: (err, attempt) => {},
+  onError: (err: any, attempt: number) => {},
 };
 
-function promiseRetry(func, options = defaultOptions, attempt = 1) {
+function promiseRetry<T>(
+  func: (attempt: number) => Promise<T>,
+  options = defaultOptions,
+  attempt = 1
+): Promise<T> {
   const config = { ...defaultOptions, ...options };
 
-  return func(attempt).catch((err) => {
+  return func(attempt).catch((err: any) => {
     // For logging...
     config.onError(err, attempt);
 
@@ -19,11 +21,11 @@ function promiseRetry(func, options = defaultOptions, attempt = 1) {
           () => resolve(promiseRetry(func, options, attempt + 1)),
           config.retryDelay
         );
-      })
+      });
     } else {
-      throw err
+      throw err;
     }
-  })
+  });
 }
 
-module.exports = promiseRetry;
+export default promiseRetry;
