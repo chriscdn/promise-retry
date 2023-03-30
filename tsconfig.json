@@ -3,11 +3,10 @@
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "node",
-    // "lib": ["ESNext"],
+    "declaration": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "outDir": "lib"
   },
   "include": ["./src/**/*"]
-  // "lib": ["es2015"]
 }
