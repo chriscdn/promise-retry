@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Retry a function returning a rejected promise until it resolves.",
   "type": "module",
-  "module": "lib/index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/chriscdn/promise-retry",
   "author": "Christopher Meyer <chris@schwiiz.org>",
   "license": "MIT",
