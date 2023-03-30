@@ -1,4 +1,10 @@
-const defaultOptions = {
+type Options = {
+  maxAttempts: number;
+  retryDelay: number;
+  onError: (err, attempt) => void;
+};
+
+const defaultOptions: Options = {
   maxAttempts: 10,
   retryDelay: 0,
   onError: (err: any, attempt: number) => {},
@@ -6,7 +12,7 @@ const defaultOptions = {
 
 function promiseRetry<T>(
   func: (attempt: number) => Promise<T>,
-  options = defaultOptions,
+  options: Partial<Options> = defaultOptions,
   attempt = 1
 ): Promise<T> {
   const config = { ...defaultOptions, ...options };
