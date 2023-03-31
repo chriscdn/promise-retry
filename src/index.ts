@@ -1,7 +1,7 @@
 type Options = {
   maxAttempts: number;
   retryDelay: number;
-  onError: (err, attempt) => void;
+  onError: (err: any, attempt: number) => void;
 };
 
 const defaultOptions: Options = {
