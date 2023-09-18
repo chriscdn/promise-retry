@@ -1,22 +1,22 @@
 {
   "name": "@chriscdn/promise-retry",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Retry a function returning a rejected promise until it resolves.",
   "repository": "https://github.com/chriscdn/promise-retry",
   "author": "Christopher Meyer <chris@schwiiz.org>",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
-  "main": "./lib/async-each.cjs",
-  "module": "./lib/async-each.module.js",
-  "unpkg": "./lib/async-each.umd.js",
+  "main": "./lib/promise-retry.cjs",
+  "module": "./lib/promise-retry.module.js",
+  "unpkg": "./lib/promise-retry.umd.js",
   "exports": {
-    "require": "./lib/async-each.cjs",
-    "default": "./lib/async-each.modern.js"
+    "require": "./lib/promise-retry.cjs",
+    "default": "./lib/promise-retry.modern.js"
   },
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "microbundle",
+    "build": "rm -rf ./lib/ && microbundle",
     "dev": "microbundle watch"
   },
   "devDependencies": {
