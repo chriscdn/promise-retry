@@ -1,6 +1,6 @@
 # @chriscdn/promise-retry
 
-Retry a function returning a promise until it resolves successfully or exceeds the maximum attempt count.
+Retry an asynchronous function until it resolves successfully or exceeds the maximum attempt count.
 
 ## Installing
 
