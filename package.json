@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/promise-retry",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Retry a function returning a rejected promise until it resolves.",
   "repository": "https://github.com/chriscdn/promise-retry",
   "author": "Christopher Meyer <chris@schwiiz.org>",
@@ -11,6 +11,7 @@
   "module": "./lib/promise-retry.module.js",
   "unpkg": "./lib/promise-retry.umd.js",
   "exports": {
+    "types": "./lib/index.d.ts",
     "require": "./lib/promise-retry.cjs",
     "default": "./lib/promise-retry.modern.js"
   },

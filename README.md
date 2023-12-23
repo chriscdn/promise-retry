@@ -7,13 +7,13 @@ Retry an asynchronous function until it resolves successfully or exceeds the max
 Using npm:
 
 ```bash
-$ npm install @chriscdn/promise-retry
+npm install @chriscdn/promise-retry
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add @chriscdn/promise-retry
+yarn add @chriscdn/promise-retry
 ```
 
 ## Example 1 - Promises
