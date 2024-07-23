@@ -10,11 +10,11 @@ const defaultOptions: Options = {
   onError: (err: any, attempt: number) => {},
 };
 
-function promiseRetry<T>(
+const promiseRetry = <T>(
   func: (attempt: number) => Promise<T>,
   options: Partial<Options> = defaultOptions,
-  attempt = 1
-): Promise<T> {
+  attempt = 1,
+): Promise<T> => {
   const config = { ...defaultOptions, ...options };
 
   return func(attempt).catch((err: any) => {
@@ -25,13 +25,13 @@ function promiseRetry<T>(
       return new Promise((resolve) => {
         setTimeout(
           () => resolve(promiseRetry(func, options, attempt + 1)),
-          config.retryDelay
+          config.retryDelay,
         );
       });
     } else {
       throw err;
     }
   });
-}
+};
 
 export default promiseRetry;
