@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/promise-retry",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Retry a function returning a rejected promise until it resolves.",
   "repository": "https://github.com/chriscdn/promise-retry",
   "author": "Christopher Meyer <chris@schwiiz.org>",
