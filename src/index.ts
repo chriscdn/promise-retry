@@ -15,7 +15,7 @@ const promiseRetry = <T>(
   options: Partial<RetryOptions> = defaultOptions,
   attempt = 1,
 ): Promise<T> => {
-  const config = { ...defaultOptions, ...options };
+  const config: RetryOptions = { ...defaultOptions, ...options };
 
   return func(attempt).catch((err: any) => {
     // For logging...
@@ -38,7 +38,10 @@ const Retryify = <Args extends unknown[], Return>(
   cb: (...args: Args) => Promise<Return>,
   options: Partial<RetryOptions> = {},
 ) =>
-(...args: Args): Promise<Return> =>
-  promiseRetry<Return>(() => cb(...args), options);
+(...args: Args): Promise<Return> => {
+  return promiseRetry<Return>(() => {
+    return cb(...args);
+  }, options);
+};
 
 export { promiseRetry, Retryify, type RetryOptions };
