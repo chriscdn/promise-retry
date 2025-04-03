@@ -37,12 +37,12 @@ const results = await promiseRetry(async (attempt) => {
 
 ## Example 2 - Retryify
 
-`Retryify` wraps an asynchronous function and returns a new function with the same interface. If the original function fails (i.e., rejects its promise), it will automatically retry the function up to a specified number of times before rejecting.
+`Retryify` wraps an asynchronous function and returns a new function with the same interface. If the original function fails (i.e., rejects its promise), it will automatically retry the function up to the specified number of times before rejecting.
 
 ```js
 import { Retryify } from "@chriscdn/promise-retry";
 
-const myAsyncFunctionThatSometimesFails = async (a, b) => {
+const myAsyncFunctionRandomFails = async (a, b) => {
   if (Math.random() < 0.2) {
     return a + b;
   } else {
@@ -50,10 +50,7 @@ const myAsyncFunctionThatSometimesFails = async (a, b) => {
   }
 };
 
-const myAsyncFunctionRetry = Retryify(
-  myAsyncFunctionThatSometimesFails,
-  options,
-);
+const myAsyncFunctionRetry = Retryify(myAsyncFunctionRandomFails, options);
 
 try {
   const sum = await myAsyncFunctionRetry(1, 5);
