@@ -16,58 +16,51 @@ Using yarn:
 yarn add @chriscdn/promise-retry
 ```
 
-## Example 1 - Promises
+## Example 1 - Async/Await
 
 ```js
-import promiseRetry from "@chriscdn/promise-retry";
+import { promiseRetry, type RetryOptions } from "@chriscdn/promise-retry";
 
-function myFunction(attempt) {
-  return new Promise((resolve, reject) => {
-    // ... do something
-
-    if (allIsFine) {
-      resolve(/* <value> */);
-    } else {
-      reject(/* <err> */);
-    }
-  });
-}
-
-const options = {
-  maxAttempts: 10,
-  retryDelay: 0,
-  onError: (err, attempt) => {},
+// all options are optional, defaults below
+const options: RetryOptions = {
+  maxAttempts: 10, // Maximum retry attempts (default: 10)
+  retryDelay: 0, // Delay between retries (in ms)
+  onError: (err, attempt) => {
+    // log the error
+  },
 };
 
-// Call myFunction until a resolved promise is returned, but not more than 10 times (default is 10)
-promiseRetry((attempt) => myFunction(attempt), options)
-  .then((value) => {
-    // myFunction resolved within 10 attempts
-    // value is from the myFunction resolve call
-  })
-  .catch((err) => {
-    // myFunction failed to return a resolved promise within 10 attempts
-    // err is the reject value from the last attempt
-  });
+const results = await promiseRetry(async (attempt) => {
+  // do something async in here
+}, options);
 ```
 
-## Example 2 - Async/Await
+## Example 2 - Retryify
+
+`Retryify` wraps an asynchronous function and returns a new function with the same interface. If the original function fails (i.e., rejects its promise), it will automatically retry the function up to a specified number of times before rejecting.
 
 ```js
-import promiseRetry from "@chriscdn/promise-retry";
+import { Retryify } from "@chriscdn/promise-retry";
 
-const results = await promiseRetry(
-  async (attempt) => {
-    // do something async in here
-  },
-  {
-    maxAttempts: 10,
-    retryDelay: 0,
-    onError: (err, attempt) => {
-      // log the error
-    },
+const myAsyncFunctionThatSometimesFails = async (a, b) => {
+  if (Math.random() < 0.2) {
+    return a + b;
+  } else {
+    throw new Error("Random failure");
   }
+};
+
+const myAsyncFunctionRetry = Retryify(
+  myAsyncFunctionThatSometimesFails,
+  options,
 );
+
+try {
+  const sum = await myAsyncFunctionRetry(1, 5);
+  console.log("Success: ", sum);
+} catch (err) {
+  console.error("Failed after retries:", err);
+}
 ```
 
 ## License

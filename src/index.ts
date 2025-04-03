@@ -1,10 +1,10 @@
-type Options = {
+type RetryOptions = {
   maxAttempts: number;
   retryDelay: number;
   onError: (err: any, attempt: number) => void;
 };
 
-const defaultOptions: Options = {
+const defaultOptions: RetryOptions = {
   maxAttempts: 10,
   retryDelay: 0,
   onError: (err: any, attempt: number) => {},
@@ -12,7 +12,7 @@ const defaultOptions: Options = {
 
 const promiseRetry = <T>(
   func: (attempt: number) => Promise<T>,
-  options: Partial<Options> = defaultOptions,
+  options: Partial<RetryOptions> = defaultOptions,
   attempt = 1,
 ): Promise<T> => {
   const config = { ...defaultOptions, ...options };
@@ -34,4 +34,11 @@ const promiseRetry = <T>(
   });
 };
 
-export default promiseRetry;
+const Retryify = <Args extends unknown[], Return>(
+  cb: (...args: Args) => Promise<Return>,
+  options: Partial<RetryOptions> = {},
+) =>
+(...args: Args): Promise<Return> =>
+  promiseRetry<Return>(() => cb(...args), options);
+
+export { promiseRetry, Retryify, type RetryOptions };

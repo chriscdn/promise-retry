@@ -1,41 +1,18 @@
-const promiseRetry = require('./index')
-async function retryMe(name, attempt) {
-  console.log(`${name} - ${attempt}`)
-  if (coinFlip()) {
-    throw new Error('shit')
-  } else {
-    return `good: ${attempt}`
-  }
-}
+import { Retryify } from "../lib/promise-retry.module.js";
 
-function coinFlip() {
-  return !Math.floor(Math.random() * 2)
+const myAsyncFunctionThatSometimesFails = async (a, b) => {
+  if (Math.random() < 0.2) {
+    return a + b;
+  } else {
+    throw new Error("Random failure");
+  }
+};
+
+const myAsyncFunctionRetry = Retryify(myAsyncFunctionThatSometimesFails, {});
+
+try {
+  const sum = await myAsyncFunctionRetry(1, 5);
+  console.log("Success: ", sum);
+} catch (err) {
+  console.error("Failed after retries:", err);
 }
-/*
-promiseRetry((attempt) => retryMe("bob", attempt), {
-  maxAttempts: 10,
-  milliseconds: 1000,
-})
-  .then((poo) => {
-    console.log(`poo: ${poo}`);
-  })
-  .catch((err) => {
-    console.log("bummer");
-  });
-  */
-;(async () => {
-  const value = await promiseRetry(
-    async (attempt) => {
-      if (coinFlip()) {
-        return attempt
-      } else {
-        console.log('nope')
-        throw new Error('nope')
-      }
-    },
-    {
-      milliseconds: 1000,
-    }
-  )
-  console.log(value)
-})()
