@@ -16,6 +16,20 @@ Using yarn:
 yarn add @chriscdn/promise-retry
 ```
 
+## Upgrading to v3
+
+The import has changed from
+
+```js
+import promiseRetry from "@chriscdn/promise-retry";
+```
+
+to
+
+```js
+import { promiseRetry } from "@chriscdn/promise-retry";
+```
+
 ## Example 1 - Async/Await
 
 ```js
