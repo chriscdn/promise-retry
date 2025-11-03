@@ -23,11 +23,13 @@
   },
   "devDependencies": {
     "microbundle": "^0.15.1",
-    "vitest": "^3.1.1"
+    "vitest": "^4.0.6"
   },
   "keywords": [
     "promise",
     "retry"
   ],
-  "dependencies": {}
+  "files": [
+    "lib"
+  ]
 }
