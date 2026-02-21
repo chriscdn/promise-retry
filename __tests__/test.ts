@@ -1,6 +1,6 @@
-import { retryify } from ".";
+import { retryify } from "../src";
 
-const myAsyncFunctionThatSometimesFails = async (a, b) => {
+const myAsyncFunctionThatSometimesFails = async (a: number, b: number) => {
   if (Math.random() < 0.2) {
     return a + b;
   } else {
@@ -9,7 +9,7 @@ const myAsyncFunctionThatSometimesFails = async (a, b) => {
 };
 
 const myAsyncFunctionRetry = retryify(myAsyncFunctionThatSometimesFails, {
-  onError: (err, attempt) => {
+  onError: (err, _attempt) => {
     console.log(err);
   },
 });
