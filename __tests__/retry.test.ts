@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { Retryify } from "../src";
+import { retryify } from "../src";
 
 describe("Retry", () => {
   let i = 0;
   const targetValue = 3;
-  const successOn3 = Retryify(async () => {
+  const successOn3 = retryify(async () => {
     i = i + 1;
 
     if (i === targetValue) {
@@ -19,7 +19,7 @@ describe("Retry", () => {
     },
   });
 
-  it("Retryify", async () => {
+  it("retryify", async () => {
     expect(await successOn3()).toBe(targetValue);
   });
 });

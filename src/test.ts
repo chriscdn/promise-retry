@@ -1,4 +1,4 @@
-import { Retryify } from "../lib/promise-retry.module.js";
+import { retryify } from ".";
 
 const myAsyncFunctionThatSometimesFails = async (a, b) => {
   if (Math.random() < 0.2) {
@@ -8,7 +8,11 @@ const myAsyncFunctionThatSometimesFails = async (a, b) => {
   }
 };
 
-const myAsyncFunctionRetry = Retryify(myAsyncFunctionThatSometimesFails, {});
+const myAsyncFunctionRetry = retryify(myAsyncFunctionThatSometimesFails, {
+  onError: (err, attempt) => {
+    console.log(err);
+  },
+});
 
 try {
   const sum = await myAsyncFunctionRetry(1, 5);
