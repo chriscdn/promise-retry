@@ -1,20 +1,21 @@
+//#region src/index.d.ts
 /**
  * Configuration options for retry behavior.
  */
 type RetryOptions = {
-    /**
-     * Maximum number of attempts before giving up. Includes the initial attempt.
-     */
-    maxAttempts: number;
-    /**
-     * Delay in milliseconds between retry attempts.
-     */
-    retryDelay: number;
-    /**
-     * Callback invoked after a failed attempt. Receives the thrown error and the
-     * current attempt number.
-     */
-    onError: (err: any, attempt: number) => void;
+  /**
+   * Maximum number of attempts before giving up. Includes the initial attempt.
+   */
+  maxAttempts: number;
+  /**
+   * Delay in milliseconds between retry attempts.
+   */
+  retryDelay: number;
+  /**
+   * Callback invoked after a failed attempt. Receives the thrown error and the
+   * current attempt number.
+   */
+  onError: (err: any, attempt: number) => void;
 };
 /**
  * Retries an asynchronous function until it resolves or the maximum number of
@@ -45,5 +46,6 @@ declare const promiseRetry: <T>(func: (attempt: number) => Promise<T>, options?:
  * @returns A new function with identical parameters that applies retry logic.
  */
 declare const retryify: <Args extends unknown[], Return>(cb: (...args: Args) => Promise<Return>, options?: Partial<RetryOptions>) => (...args: Args) => Promise<Return>;
-
+//#endregion
 export { type RetryOptions, promiseRetry, retryify };
+//# sourceMappingURL=index.d.ts.map

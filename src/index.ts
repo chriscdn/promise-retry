@@ -78,14 +78,15 @@ const promiseRetry = <T>(
  * @param options - Optional retry configuration.
  * @returns A new function with identical parameters that applies retry logic.
  */
-const retryify = <Args extends unknown[], Return>(
-  cb: (...args: Args) => Promise<Return>,
-  options: Partial<RetryOptions> = {},
-) =>
-(...args: Args): Promise<Return> => {
-  return promiseRetry<Return>(() => {
-    return cb(...args);
-  }, options);
-};
+const retryify =
+  <Args extends unknown[], Return>(
+    cb: (...args: Args) => Promise<Return>,
+    options: Partial<RetryOptions> = {},
+  ) =>
+  (...args: Args): Promise<Return> => {
+    return promiseRetry<Return>(() => {
+      return cb(...args);
+    }, options);
+  };
 
 export { promiseRetry, retryify, type RetryOptions };
